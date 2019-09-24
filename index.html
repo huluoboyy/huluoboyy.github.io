@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/24/第一周/">稍微了解</a>
+      <a class="article-title" href="/2019/09/24/第一周/">基础了解</a>
     </h1>
   
 
@@ -84,30 +84,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##杂项（简单基础）<br>Flie命令：查看不知道后缀名、无法打开的文件<br>例：flie myheart<br>Winhex程序查看文件头类型判断类型<br>文件类型<br><a href="https://github.com/huluoboyy/huluoboyy.github.io.git/images/xxx.png" target="_blank" rel="noopener">https://github.com/huluoboyy/huluoboyy.github.io.git/images/xxx.png</a><br>我们在做 ctf隐写题 的时候，总是会用到 winhax 来查看一个文件的文件头等等信息，可是当我们在纯 Linux 的环境下，无法使用 winhax 该怎么办呢？ 其实很简单，在 Linux 里使用 vim 就可以解决这个问题。 查看、修改 使用 vim 查看 16 位文件的办法是 :%!xxd 查看完毕后使用这个命令可以恢复，不然文件将无法正常读取。 :%!xxd -r 增删 上面我介绍的方法非常利于查看和修改，却不适合用于增加文件头或删除部分数据。 此时我们需要使用这个命令来查看，虽然此时的排版格式与平常不同，但适合用于增删。 :%!xxd -i 修改完成后，恢复 :%!xxd -r -p<br>查看hex代码查找flag<br>文件头缺失<br>用010对hex文件进行修复<br>Binwalk工具<br>分析：binwalk filename 查看文件类型有可能是0x0-0x123之间是图片，之后是压缩包就要用到分离<br>分离：binwalk -e filename<br>Binwalk分离不出时用foremost 文件名 -o 输出目录名<br>dd 当文件自动分离出错或其他原因无法分离时<br>dd if=源文件 of=目标文件名 bs =1 skip =开始分离的字节数<br>if =file #输入文件名<br>of=fli    e #输出文件名<br>bs=bytes #读写大小为btyes<br>skip=blocks #输入文件开口跳过blocks个块之后开始复制<br>例子：<br>        1.txt<br>        123456789abcdefg<br>        dd if=1.txt of 2.txt bs=5 count=1<br>        保存前5块另存为2.text<br>        dd if 1.txt of =4.txt bs=5 count=3  skip=1(跳过第一块)</p>
+        <h2 id="杂项（简单基础）"><a href="#杂项（简单基础）" class="headerlink" title="杂项（简单基础）"></a>杂项（简单基础）</h2><p>Flie命令：查看不知道后缀名、无法打开的文件<br>例：flie myheart<br>Winhex程序查看文件头类型判断类型<br>文件类型</p>
+<p>我们在做 ctf隐写题 的时候，总是会用到 winhax 来查看一个文件的文件头等等信息，可是当我们在纯 Linux 的环境下，无法使用 winhax 该怎么办呢？ 其实很简单，在 Linux 里使用 vim 就可以解决这个问题。 查看、修改 使用 vim 查看 16 位文件的办法是 :%!xxd 查看完毕后使用这个命令可以恢复，不然文件将无法正常读取。 :%!xxd -r 增删 上面我介绍的方法非常利于查看和修改，却不适合用于增加文件头或删除部分数据。 此时我们需要使用这个命令来查看，虽然此时的排版格式与平常不同，但适合用于增删。 :%!xxd -i 修改完成后，恢复 :%!xxd -r -p<br>查看hex代码查找flag<br>文件头缺失<br>用010对hex文件进行修复<br>Binwalk工具<br>分析：binwalk filename 查看文件类型有可能是0x0-0x123之间是图片，之后是压缩包就要用到分离<br>分离：binwalk -e filename<br>Binwalk分离不出时用foremost 文件名 -o 输出目录名<br>dd 当文件自动分离出错或其他原因无法分离时<br>dd if=源文件 of=目标文件名 bs =1 skip =开始分离的字节数<br>if =file #输入文件名<br>of=fli    e #输出文件名<br>bs=bytes #读写大小为btyes<br>skip=blocks #输入文件开口跳过blocks个块之后开始复制</p>
+<pre><code class="例子：">1.txt
+123456789abcdefg
+dd if=1.txt of 2.txt bs=5 count=1
+保存前5块另存为2.text
+dd if 1.txt of =4.txt bs=5 count=3  skip=1(跳过第一块)
+</code></pre>
 <p>压缩文件处理</p>
-<p>##Linux<br>基本命令<br>pwd:显示当前所在的工作目录<br>cd root 进入root目录<br>cd . 验证 ‘.’ 待代表当前目录<br>cd .. 返回上一层<br>cd ~回到刚才目录<br>ls ：显示当前目录文件<br>        -a ：显示所有文件<br>        - l ：显示所有文件、目录信息<br>        -d ：显示当前目录本身属性（与 l 配合使用）<br>        - i ：显示文件或目录的indoes（配合 l 使用）</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>基本命令<br>pwd:显示当前所在的工作目录<br>cd root 进入root目录<br>cd . 验证 ‘.’ 待代表当前目录<br>cd .. 返回上一层<br>cd ~回到刚才目录<br>ls ：显示当前目录文件<br>    <code>-a ：显示所有文件
+        - l ：显示所有文件、目录信息
+        -d ：显示当前目录本身属性（与 l 配合使用）
+        - i ：显示文件或目录的indoes（配合 l 使用）</code> </p>
 <ol start="2">
-<li>创建、删除、修改<br>touch file 创建文件file  #当文件存在时，更新创建时间<br>mkdir dir    创建目录dir<br>rm [option]<br>[option] :<pre><code> - i        确认信息，root用户默认有，普通用户无
-- r     递归recursion 删除目录必须使用
-- f     强制删除，没有提示和确认
--rf     组合使用</code></pre>mv [option] file dst 移动、重命名文件夹或者目录<br>cp [option] scr dst 复制文件或者目录<pre><code>-p 保留原来的时间截，拥有者信息
+<li>创建、删除、修改<br>touch file 创建文件file  #当文件存在时，更新创建时间<br>mkdir dir    创建目录dir<br>rm [option]<br>[option] :<pre><code>```    - i        确认信息，root用户默认有，普通用户无
+  - r     递归recursion 删除目录必须使用
+  - f     强制删除，没有提示和确认
+  -rf     组合使用``` </code></pre>mv [option] file dst 移动、重命名文件夹或者目录<br>cp [option] scr dst 复制文件或者目录<pre><code>-p 保留原来的时间截，拥有者信息
 -r 复制目录</code></pre></li>
 <li>文件查看操作<br>cat 显示文件所有内容<br>more 查看文件内容（只能往下）<br>less 分页显示文件内容<br>head、tail 显示文件首尾行</li>
 <li>vi编辑器——初级<br>Vi 文件名 ：光标到字母输入相同字母进入编辑<pre><code>按Esc退出，按： q退出 w保存
 ：wq 保存退出
 dd 删除当前行</code></pre></li>
-<li>网络地址配置<br>ifconfig 网络配置命令<br>不带参数    查看所有网卡信息 ————相当于Windows中的ipconfig       → inet 192.</li>
-<li>1.1<br>Ifconfig ethN 查看网卡N 的信息<br>Ifconfig ethN up/down，ifdown/ifup ethN 启用/禁用网卡N,断开、链接<br>Ifconfig ethN 192.168.1.1 netmask 255.255.255.128  为网卡N配置ip地址<br>重启网络服务，配置丢失，一边写进ifcfg-ethN文件中<br>Dhclient（重新获取ip地址）<br>-r 此参数释放地址</li>
+<li>网络地址配置<br>ifconfig 网络配置命令<br>不带参数    查看所有网卡信息 ————相当于Windows中的ipconfig<br>→ inet 192.168.1.1<br>Ifconfig ethN 查看网卡N 的信息<br>Ifconfig ethN up/down，ifdown/ifup ethN 启用/禁用网卡N,断开、链接<br>Ifconfig ethN 192.168.1.1 netmask 255.255.255.128  为网卡N配置ip地址<br>重启网络服务，配置丢失，一边写进ifcfg-ethN文件中<br>Dhclient（重新获取ip地址）<br>-r 此参数释放地址</li>
 <li>文件传输&amp;shell<br>Shell：<br>使用工具securecrt/xshell<br>Linux需要启用sshd<br>修改配置文件vi /etc/ssh/sshd_congfig<br>Add permitrootiogin yes<br>Add PasswordAuthentication yes<br>重启ssd服务<br>/etc/init.d/ssh restart<br>添加开机启动<br>Update-rc.d ssh enable<br>文件传输<br>securecrt/xshell<br>连接sftp会话<br>Get：下载<br>Put：上传</li>
 <li>软件安装形式<br>Apt-get 包管理工具<br>-install 联网安装软件<br>-remove    卸载<br>源码安装流程<br>./configure 进行软件配置<br>Make      进行编译<br>Make install 进行安装</li>
 </ol>
-<p>##Web<br>Web应用基本架构</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><p>Web应用基本架构</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://huluoboyy.github.io/2019/09/24/第一周/" data-id="ck0xdsyod0001cstkmn64zp7b" class="article-share-link">Share</a>
+      <a data-url="https://huluoboyy.github.io/2019/09/24/第一周/" data-id="ck0xdzea900011wtkb48t0z91" class="article-share-link">Share</a>
       
       
     </footer>
@@ -133,7 +142,7 @@ dd 删除当前行</code></pre></li>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://huluoboyy.github.io/2019/09/24/hello-world/" data-id="ck0xdsyo40000cstkx6qknhl6" class="article-share-link">Share</a>
+      <a data-url="https://huluoboyy.github.io/2019/09/24/hello-world/" data-id="ck0xdzea100001wtkkvm2bo60" class="article-share-link">Share</a>
       
       
     </footer>
@@ -174,7 +183,7 @@ dd 删除当前行</code></pre></li>
       <ul>
         
           <li>
-            <a href="/2019/09/24/第一周/">稍微了解</a>
+            <a href="/2019/09/24/第一周/">基础了解</a>
           </li>
         
           <li>
